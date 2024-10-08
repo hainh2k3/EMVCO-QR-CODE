@@ -31,8 +31,8 @@ namespace EMVCO_QR_CODE
             get
             {
                 string _pre_bankid = $"000{_bankid.Length}{_bankid}"; //bank id
-                string _pre_sotaikhoan = $"01{_sotaikhoan.Length}{_sotaikhoan}"; // so tai khoan
-                string _pre_bankid_sotaikhoan = $"01{_pre_bankid.Length + _pre_sotaikhoan.Length}{_pre_bankid}{_pre_sotaikhoan}";
+				string _pre_sotaikhoan = $"01{_sotaikhoan.Length:D2}{_sotaikhoan}"; // so tai khoan
+				string _pre_bankid_sotaikhoan = $"01{_pre_bankid.Length + _pre_sotaikhoan.Length}{_pre_bankid}{_pre_sotaikhoan}";
                 string _content = $"0010A000000727{_pre_bankid_sotaikhoan}0208QRIBFTTA"; //napas247 -> account number
 
                 _content = $"38{_content.Length}{_content}";
@@ -75,8 +75,8 @@ namespace EMVCO_QR_CODE
             {
                 crc = (ushort)((crc << 8) ^ table[((crc >> 8) ^ (0xff & bytes[i]))]);
             }
-            return crc.ToString("X");
-        }
+			return crc.ToString("X4");
+		}
 
 
     }
